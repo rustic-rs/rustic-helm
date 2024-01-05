@@ -1,0 +1,111 @@
+{{- if eq .Values.rustic.init true }}
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {{ include "rustic.fullname" . }}-init
+  labels:
+    {{- include "rustic.labels" . | nindent 4 }}
+spec:
+  ttlSecondsAfterFinished: 100
+  template:
+    metadata:
+      labels:
+        {{- include "rustic.labels" . | nindent 8 }}
+    spec:
+      automountServiceAccountToken: false
+      restartPolicy: OnFailure
+      initContainers:
+        - name: rclone
+          image: "{{ .Values.rclone.image.repository }}:{{ .Values.rclone.image.tag }}"
+          imagePullPolicy: {{ .Values.rclone.image.pullPolicy }}
+          restartPolicy: Always
+          args:
+            - serve
+            - restic
+            - -v
+            - --addr
+            - :8080
+            - repo:{{ .Values.s3.repo.bucket }}
+          volumeMounts:
+            - mountPath: /config/rclone
+              name: rclone-config
+          startupProbe:
+            tcpSocket:
+              port: 8080
+            failureThreshold: 30
+            periodSeconds: 1
+          resources:
+            {{- toYaml .Values.rclone.resources | nindent 16 }}
+          securityContext:
+            {{- toYaml .Values.rclone.securityContext | nindent 16 }}
+        {{- if .Values.s3.repo_hot }}
+        - name: rclone-hot
+          image: "{{ .Values.rclone.image.repository }}:{{ .Values.rclone.image.tag }}"
+          imagePullPolicy: {{ .Values.rclone.image.pullPolicy }}
+          restartPolicy: Always 
+          args:
+            - serve
+            - restic
+            - -v
+            - --addr
+            - :8081
+            - repo-hot:{{ .Values.s3.repo_hot.bucket }}
+          volumeMounts:
+            - mountPath: /config/rclone
+              name: rclone-hot-config
+          startupProbe:
+            tcpSocket:
+              port: 8081
+            failureThreshold: 30
+            periodSeconds: 1
+          resources:
+            {{- toYaml .Values.rclone.resources | nindent 16 }}
+          securityContext:
+            {{- toYaml .Values.rclone.securityContext | nindent 16 }}
+        {{- end }}
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.rustic.image.repository }}:{{ .Values.rustic.image.tag  | default .Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.rustic.image.pullPolicy }}
+          args:
+            - init
+            - --password-file
+            - "/etc/rustic/.rustic"
+            - --repository
+            - rest:http://localhost:8080/
+            {{- if .Values.s3.repo_hot }}
+            - --repo-hot
+            - rest:http://localhost:8081/
+            {{- end }}
+          volumeMounts:
+            - mountPath: /etc/rustic
+              name: rustic-encryption-secret
+          resources:
+            {{- toYaml .Values.rustic.resources | nindent 16 }}
+          securityContext:
+            {{- toYaml .Values.rustic.securityContext | nindent 16 }}
+      volumes:
+        - name: rustic-encryption-secret
+          secret:
+            secretName: {{ include "rustic.fullname" . }}-encryption-secret
+        - name: rclone-config
+          secret:
+            secretName: {{ include "rustic.fullname" . }}-rclone
+        {{- if .Values.s3.repo_hot }}
+        - name: rclone-hot-config
+          secret:
+            secretName: {{ include "rustic.fullname" . }}-rclone-hot
+        {{- end }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 12 }}
+      {{- end }}
+      {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 12 }}
+      {{- end }}
+      {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 12 }}
+      {{- end }}
+{{- end }}

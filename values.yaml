@@ -1,0 +1,52 @@
+# Default values for rustic.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+cronjob:
+  schedule: "0 1 * * *"
+  failedJobsHistoryLimit: 3
+  successfulJobsHistoryLimit: 1
+  restartPolicy: OnFailure
+
+nameOverride: ""
+fullnameOverride: ""
+
+rclone:
+  image:
+    repository: rclone/rclone
+    pullPolicy: IfNotPresent
+    tag: 1.65.0
+  resources: {}
+  securityContext:
+    runAsUser: 1009
+    runAsGroup: 1009
+    allowPrivilegeEscalation: false
+    capabilities:
+      drop:
+        - ALL
+
+rustic:
+  image:
+    repository: rusticdocker/rustic
+    pullPolicy: IfNotPresent
+    # Overrides the image tag whose default is the chart appVersion.
+    tag: ""
+  init: false
+  resources:
+    requests:
+      memory: 50Mi
+      cpu: 100m
+    limits:
+      memory: 192Mi
+      cpu: 200m
+  securityContext:
+    allowPrivilegeEscalation: false
+    capabilities:
+      drop:
+        - ALL
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
