@@ -27,7 +27,7 @@ rclone:
 
 rustic:
   image:
-    repository: rusticdocker/rustic
+    repository: ghcr.io/mueckinger/rustic
     pullPolicy: IfNotPresent
     # Overrides the image tag whose default is the chart appVersion.
     tag: ""
