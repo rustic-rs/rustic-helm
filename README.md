@@ -14,7 +14,7 @@ This chart will set up rustic as a Kubernetes CronJob
 
 1. Kubernetes >=1.29 or 1.28 (with featureGate `SidecarContainers` enabled)
 2. Helm v3 (Tested with v3.11.2)
-3. Rustic's chart repository: `helm repo add rustic https://rustic`
+3. Rustic's chart repository: `helm repo add mueckinger https://mueckinger.github.io/charts`
 
 
 Bare minimum `values.yml`:
@@ -22,7 +22,7 @@ Bare minimum `values.yml`:
 hostname: <myHost>
 
 rustic:
-  encryption_secret: "***"
+  encryption_secret: <encryptionSecret>
   backup_volume:
     hostPath:
       path: /path/to/backupfolder
@@ -33,19 +33,19 @@ s3:
     access_key_id: <myS3AccessKeyID>
     secret_access_key: <mySecretS3AccessKey>
     region: fr-par
-    bucket: k8s-data-cold
+    bucket: <bucketName>
 ```
 
 ### Deploying rustic
 
 ```
-helm install rustic rustic/rustic --set rustic.init=true -f values.yml
+helm install rustic mueckinger/rustic --set rustic.init=true -f values.yml
 ```
 
 If there is already an initialized restic repository in the Bucket omit `--set rustic.init=true`:
 
 ```
-helm install rustic rustic/rustic -f values.yml
+helm install rustic mueckinger/rustic -f values.yml
 ```
 
 ### Examples
