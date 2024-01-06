@@ -15,9 +15,8 @@ This chart installs `rustic backup` as [Kubernetes CronJob](https://kubernetes.i
 * Kubernetes >=1.29 or 1.28 (with featureGate `SidecarContainers` enabled)
 * Helm v3 (Tested with v3.11.2)
 * Rustic's chart repository: `helm repo add rustic https://mueckinger.github.io/rustic-helm/charts`
+* A valid `values.yml` file, the following example represents the bare minimum:
 
-
-Bare minimum `values.yml`:
 ```yaml
 # Kubernetes assigns random hostnames for Pods by default. Please set the Pods hostname to a fixed value, otherwise incremental backups won't work.
 hostname: <myHost> 
