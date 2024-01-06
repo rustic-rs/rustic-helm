@@ -18,8 +18,9 @@ This chart installs `rustic backup` as [Kubernetes CronJob](https://kubernetes.i
 
 
 Bare minimum `values.yml`:
-```
-hostname: <myHost>
+```yaml
+# Kubernetes assigns random hostnames for Pods by default. Please set the Pods hostname to a fixed value, otherwise incremental backups won't work.
+hostname: <myHost> 
 
 rustic:
   encryption_secret: <encryptionSecret>
@@ -36,8 +37,7 @@ s3:
     bucket: <bucketName>
 ```
 
-This will trigger a daily backup of the nodes </path/to/backupfolder> to the given S3 bucket at 1:00 am (default schedule).
-As each Job Pod get's a new hostname, you have to
+This will trigger a daily backup of the nodes </path/to/backupfolder> to the given S3 bucket at 1:00 am (default schedule). 
 
 ### Deploying rustic
 
