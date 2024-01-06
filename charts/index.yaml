@@ -3,12 +3,12 @@ entries:
   rustic:
   - apiVersion: v2
     appVersion: 0.6.1
-    created: "2024-01-06T13:51:56.095959748+01:00"
+    created: "2024-01-06T14:01:32.369624462+01:00"
     description: fast, encrypted and deduplicated backups
     digest: 8e783811d5bcd0adfd3778af753e9839aaedf2a3dd529124f3285a25f896cf95
     name: rustic
     type: application
     urls:
-    - https://mueckinger.github.io/charts/rustic-0.1.0-alpha.tgz
+    - https://mueckinger.github.io/rustic-helm/charts/rustic-0.1.0-alpha.tgz
     version: 0.1.0-alpha
-generated: "2024-01-06T13:51:56.094959308+01:00"
+generated: "2024-01-06T14:01:32.368707107+01:00"
