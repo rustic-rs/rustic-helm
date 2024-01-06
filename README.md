@@ -6,15 +6,15 @@ It reads and writes the [restic](https://github.com/restic/restic) repo format d
 
 ## Introduction
 
-This chart will set up rustic as a Kubernetes CronJob
+This chart installs `rustic backup` as [Kubernetes CronJob](https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/), which will run a [Kubernetes Job] (https://kubernetes.io/docs/concepts/workloads/controllers/job/) periodically on a given schedule. It can optionally initialize a new repository by creating a single Job running `rustic init`.
 
 ## Installing
 
 ### Prerequisites
 
-1. Kubernetes >=1.29 or 1.28 (with featureGate `SidecarContainers` enabled)
-2. Helm v3 (Tested with v3.11.2)
-3. Rustic's chart repository: `helm repo add rustic https://mueckinger.github.io/rustic-helm/charts`
+* Kubernetes >=1.29 or 1.28 (with featureGate `SidecarContainers` enabled)
+* Helm v3 (Tested with v3.11.2)
+* Rustic's chart repository: `helm repo add rustic https://mueckinger.github.io/rustic-helm/charts`
 
 
 Bare minimum `values.yml`:
@@ -35,6 +35,9 @@ s3:
     region: fr-par
     bucket: <bucketName>
 ```
+
+This will trigger a daily backup of the nodes </path/to/backupfolder> to the given S3 bucket at 1:00 am (default schedule).
+As each Job Pod get's a new hostname, you have to
 
 ### Deploying rustic
 
