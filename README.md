@@ -1,12 +1,25 @@
-# Rustic
+<p align="center">
+<a href="https://rustic.cli.rs/rustic-helm/"><img src="https://raw.githubusercontent.com/rustic-rs/assets/main/logos/readme_header_helm.png" height="400" /></a>
+</p>
+<p align="center"><b>Helm charts for rustic</b></p>
 
-[Rustic](https://rustic.cli.rs/) is a backup tool that provides fast, encrypted and deduplicated backups.
+## About
 
-It reads and writes the [restic](https://github.com/restic/restic) repo format described in the [design document](https://github.com/restic/restic/blob/master/doc/design.rst) and can be used as a restic replacement in most cases.
+[rustic](https://rustic.cli.rs/) is a backup tool that provides fast, encrypted and deduplicated backups. This chart installs `rustic backup` as [Kubernetes CronJob](https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/), which will run a [Kubernetes Job](https://kubernetes.io/docs/concepts/workloads/controllers/job/) periodically on a given schedule. It can optionally initialize a new repository by creating a single Job running `rustic init`.
 
-## Introduction
+## Contact
 
-This chart installs `rustic backup` as [Kubernetes CronJob](https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/), which will run a [Kubernetes Job](https://kubernetes.io/docs/concepts/workloads/controllers/job/) periodically on a given schedule. It can optionally initialize a new repository by creating a single Job running `rustic init`.
+You can ask questions in the
+[Discussions](https://github.com/rustic-rs/rustic/discussions) or have a look at
+the [FAQ](https://rustic.cli.rs/docs/FAQ.html).
+
+| Contact       | Where?                                                                                                          |
+| ------------- | --------------------------------------------------------------------------------------------------------------- |
+| Issue Tracker | [GitHub Issues](https://github.com/rustic-rs/rustic-helm/issues/choose)                                         |
+| Discord       | [![Discord](https://dcbadge.vercel.app/api/server/WRUWENZnzQ?style=flat-square)](https://discord.gg/WRUWENZnzQ) |
+| Discussions   | [GitHub Discussions](https://github.com/rustic-rs/rustic/discussions)                                           |
+
+
 
 ## Installing
 
@@ -86,3 +99,22 @@ s3:
     storage_class: ONEZONE_IA # Replace with your provider's hot storage class
     bucket: <myHotBucket>
 ```
+
+## Contributing
+
+Found a bug?
+
+- [Open an issue!](https://github.com/rustic-rs/rustic-helm/issues/choose)
+
+Got an idea for an improvement? Don't keep it to yourself!
+
+- [Contribute fixes](https://github.com/rustic-rs/rustic-helm/contribute) or new
+  features via a pull requests!
+
+Please make sure, that you read the
+[contribution guide](https://rustic.cli.rs/docs/contributing-to-rustic.html).
+
+
+## License
+
+Licensed under [Apache License, Version 2.0](./LICENSE-APACHE).
