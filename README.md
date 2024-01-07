@@ -1,7 +1,7 @@
 <p align="center">
 <a href="https://rustic.cli.rs/rustic-helm/"><img src="https://raw.githubusercontent.com/rustic-rs/assets/main/logos/readme_header_helm.png" height="400" /></a>
 </p>
-<p align="center"><b>Helm charts for rustic - a solution for fast, encrypted, and deduplicated backups</b></p>
+<p align="center"><b>Helm charts for rustic</b></p>
 
 ## About
 
