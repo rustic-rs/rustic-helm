@@ -9,6 +9,6 @@ entries:
     name: rustic
     type: application
     urls:
-    - https://mueckinger.github.io/rustic-helm/charts/rustic-0.1.0-alpha.tgz
+    - https://rustic-rs.github.io/rustic-helm/charts/rustic-0.1.0-alpha.tgz
     version: 0.1.0-alpha
 generated: "2024-01-06T14:01:32.368707107+01:00"
