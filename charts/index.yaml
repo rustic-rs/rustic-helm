@@ -3,9 +3,9 @@ entries:
   rustic:
   - apiVersion: v2
     appVersion: 0.6.1
-    created: "2024-01-12T09:43:32.997540088+01:00"
+    created: "2024-01-12T11:09:05.590029206+01:00"
     description: fast, encrypted and deduplicated backups
-    digest: 580df7795fbc9b8e8a9b5f5972b2fa22172c8457d4b58d1756973d277ed436b4
+    digest: 609655eda9821613ab9c33fd73deb0410fec869b0410725f2ec149900b2f6682
     name: rustic
     type: application
     urls:
