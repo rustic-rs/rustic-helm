@@ -100,6 +100,13 @@ s3:
     bucket: <myHotBucket>
 ```
 
+## To Do
+
+- [ ] Auto create persistentVolume for local cache
+- [ ] Add forget/prune CronJobs
+- [ ] Follow [helm charts best practises](https://helm.sh/docs/chart_best_practices/)
+
+
 ## Contributing
 
 Found a bug?
