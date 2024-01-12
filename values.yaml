@@ -37,8 +37,8 @@ rustic:
       memory: 50Mi
       cpu: 100m
     limits:
-      memory: 192Mi
-      cpu: 200m
+      memory: 512Mi
+      cpu: 500m
   securityContext: {}
 
 nodeSelector: {}
