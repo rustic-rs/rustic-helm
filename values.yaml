@@ -37,13 +37,9 @@ rustic:
       memory: 50Mi
       cpu: 100m
     limits:
-      memory: 192Mi
-      cpu: 200m
-  securityContext:
-    allowPrivilegeEscalation: false
-    capabilities:
-      drop:
-        - ALL
+      memory: 512Mi
+      cpu: 500m
+  securityContext: {}
 
 nodeSelector: {}
 

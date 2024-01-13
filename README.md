@@ -42,6 +42,7 @@ rustic:
 
 s3:
   repo:
+    provider: Scaleway
     endpoint: s3.fr-par.scw.cloud
     access_key_id: <myS3AccessKeyID>
     secret_access_key: <mySecretS3AccessKey>
@@ -85,6 +86,7 @@ persistence:
 # One of rustic's greatest features is that you can use it with cold or "glacier" storage. Therefore you need to define two buckets/repositories. The `repo_hot` only holds the backend's metadata like config, keys, snapshots, index and tree blobs, which are required for browsing and managing the repo. This part is quite small. The `repo` holds the full repository including data and metadata.
 s3:
   repo:
+    provider: Scaleway
     endpoint: s3.fr-par.scw.cloud
     access_key_id: <myS3AccessKeyID>
     secret_access_key: <mySecretS3AccessKey>
@@ -92,6 +94,7 @@ s3:
     storage_class: GLACIER  # Replace with your provider's cold and cheap storage class
     bucket: <myColdBucket>
   repo_hot:
+    provider: Scaleway
     endpoint: s3.fr-par.scw.cloud
     access_key_id: <myS3AccessKeyID>
     secret_access_key: <mySecretS3AccessKey>
@@ -99,6 +102,13 @@ s3:
     storage_class: ONEZONE_IA # Replace with your provider's hot storage class
     bucket: <myHotBucket>
 ```
+
+## To Do
+
+- [ ] Auto create persistentVolume for local cache
+- [ ] Add forget/prune CronJobs
+- [ ] Follow [helm charts best practises](https://helm.sh/docs/chart_best_practices/)
+
 
 ## Contributing
 
