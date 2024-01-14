@@ -5,11 +5,11 @@ entries:
     appVersion: 0.6.1
     created: "2024-01-12T18:11:53.714144944+01:00"
     description: fast, encrypted and deduplicated backups
-    digest: 3c8a0219a14bf8cf25d3cea57bee4a326144f0e8138656a58b692fb7ece2e533
+    digest: dac3ca6875a462a0fd77bbc3300d743e260f23ca7e6a7cd1949fea1b51b44c16
     name: rustic
     type: application
     urls:
-    - https://github.com/rustic-rs/rustic-helm/releases/download/0.1.1-alpha/charts/rustic-0.1.1-alpha.tgz
+    - https://github.com/rustic-rs/rustic-helm/releases/download/0.1.1-alpha/rustic-0.1.1-alpha.tgz
     version: 0.1.1-alpha
   - apiVersion: v2
     appVersion: 0.6.1
