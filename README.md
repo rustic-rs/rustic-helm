@@ -25,7 +25,7 @@ the [FAQ](https://rustic.cli.rs/docs/FAQ.html).
 
 ### Prerequisites
 
-* Kubernetes >=1.29 or 1.28 (with featureGate `SidecarContainers` enabled)
+* Kubernetes >=1.24
 * Helm v3 (Tested with v3.11.2)
 * Rustic's chart repository: `helm repo add rustic https://rustic-rs.github.io/rustic-helm/charts`
 * A valid `values.yml` file, the following example represents the bare minimum:
@@ -55,13 +55,13 @@ This will trigger a daily backup of the nodes </path/to/backupfolder> to the giv
 ### Deploying rustic
 
 ```
-helm install rustic rustic/rustic --set rustic.init=true -f values.yml
+helm install rustic rustic/rustic --version 0.2.0-alpha --set rustic.init=true -f values.yml
 ```
 
 If there is already an initialized restic repository in the Bucket omit `--set rustic.init=true`:
 
 ```
-helm install rustic rustic/rustic -f values.yml
+helm install rustic rustic/rustic --version 0.2.0-alpha -f values.yml
 ```
 
 ### Examples

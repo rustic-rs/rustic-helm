@@ -11,20 +11,6 @@ cronjob:
 nameOverride: ""
 fullnameOverride: ""
 
-rclone:
-  image:
-    repository: rclone/rclone
-    pullPolicy: IfNotPresent
-    tag: 1.65.0
-  resources: {}
-  securityContext:
-    runAsUser: 1009
-    runAsGroup: 1009
-    allowPrivilegeEscalation: false
-    capabilities:
-      drop:
-        - ALL
-
 rustic:
   image:
     repository: ghcr.io/mueckinger/rustic
